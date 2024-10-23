@@ -1,0 +1,4 @@
+Flask==3.0.0
+imaplib2==2.58
+email==6.0.0
+Werkzeug==2.3.7

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phishing Detection Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        li strong {
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .result {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .result.danger {
+            color: #dc3545;
+        }
+
+        .reason-list {
+            padding-left: 20px;
+        }
+
+        .reason-list li {
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        .reason-list li::before {
+            content: "•";
+            color: #007BFF;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Phishing Detection Results</h2>
+
+    <div class="container">
+        {% if emails %}
+            <ul>
+            {% for email in emails %}
+                <li>
+                    <strong>Subject:</strong> {{ email.subject }} <br>
+                    <strong>Result:</strong> 
+                    <span class="result {{ 'danger' if email.result == 'Phishing Detected' else '' }}">
+                        {{ email.result }}
+                    </span>
+                    <br>
+                    <strong>Reasons:</strong>
+                    <ul class="reason-list">
+                        {% for reason in email.reasons %}
+                            <li>{{ reason }}</li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No emails or phishing results to display.</p>
+        {% endif %}
+    </div>
+
+    <div class="footer">
+        <p>Phishing Detection App © 2024</p>
+    </div>
+
+</body>
+</html>

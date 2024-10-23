@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Phishing Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #28a745;
+            text-align: center;
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            color: #28a745;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #28a745;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        p {
+            color: red;
+            font-weight: bold;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background-color: #e9f7ef;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 4px solid #28a745;
+            border-radius: 5px;
+        }
+
+        li strong {
+            color: #333;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                padding: 15px;
+            }
+
+            button {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Email Phishing Detection</h1>
+        <form method="POST">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ email }}" required>
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" value="{{ password }}" required>
+
+            <label for="keywords">Custom Keywords (comma-separated):</label>
+            <input type="text" id="keywords" name="keywords">
+
+            <label for="num_emails">Number of Emails to Check:</label>
+            <input type="number" id="num_emails" name="n_emails" value="5" min="1" max="100" required>
+
+            <label for="remember_me">
+                <input type="checkbox" id="remember_me" name="remember_me"> Remember Me
+            </label>
+
+            <button type="submit">Check Emails</button>
+        </form>
+
+        {% if error %}
+            <p>{{ error }}</p>
+        {% endif %}
+        
+        
+    </div>
+</body>
+</html>
